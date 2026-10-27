@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if product %}
+        Edit Product
+    {% else %}
+        Create Product
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>
+            {% if product %}
+                Edit Product
+            {% else %}
+                Create Product
+            {% endif %}
+        </h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn">Save Product</button>
+        </form>
+
+        <a href="{% url 'product-list' %}" class="btn btn-grey">Back to Products</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Inquiry{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Delete Inquiry</h1>
+
+        <p>
+            Are you sure you want to delete the inquiry from
+            <strong>{{ object.customer_name }}</strong>?
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-red">Yes, delete</button>
+        </form>
+
+        <a href="{% url 'inquiries' %}" class="btn btn-grey">Cancel</a>
+    </div>
+{% endblock %}

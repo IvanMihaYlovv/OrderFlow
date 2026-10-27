@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load product_filters %}
+
+{% block title %}{{ product.name }} Details{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>{{ product.name }}</h1>
+
+        <p>{{ product.description }}</p>
+        <p>Price: <span class="price">{{ product.price|euro }}</span></p>
+        <p>Category: {{ product.category.name }}</p>
+
+        <h3>Materials</h3>
+        <ul>
+            {% for material in product.materials.all %}
+                <li>{{ material.name }}</li>
+            {% empty %}
+                <li>No added materials</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'product-update' product.pk %}" class="btn">Edit</a>
+        <a href="{% url 'product-delete' product.pk %}" class="btn btn-red">Delete</a>
+        <a href="{% url 'product-list' %}" class="btn btn-grey">Back to products</a>
+    </div>
+{% endblock %}

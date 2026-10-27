@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ material.name }} Details{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>{{ material.name }}</h1>
+
+        <p>{{ material.description }}</p>
+
+        <p>
+            Status:
+            {% if material.is_available %}
+                <span class="available">Available</span>
+            {% else %}
+                <span class="unavailable">Unavailable</span>
+            {% endif %}
+        </p>
+
+        <a href="{% url 'material-update' pk=material.pk %}" class="btn">Update</a>
+        <a href="{% url 'material-delete' pk=material.pk %}" class="btn btn-red">Delete</a>
+        <a href="{% url 'material-list' %}" class="btn btn-grey">Step back to all materials</a>
+    </div>
+{% endblock %}

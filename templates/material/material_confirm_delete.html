@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Изтриване на материал | OrderFlow{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Изтриване на материал</h1>
+
+        <p>
+            Сигурен ли си, че искаш да изтриеш
+            <strong>{{ material.name }}</strong>?
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-red">Да, изтрий</button>
+        </form>
+
+        <a href="{% url 'material-detail' pk=material.pk %}" class="btn btn-grey">Отказ</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Category Delete Confirmation{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Delete Category</h1>
+
+        <p>
+            Are you sure you want to delete "{{ category.name }}"?
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-red">Yes, delete</button>
+        </form>
+
+        <a href="{% url 'category-detail' category.pk %}" class="btn btn-grey">Cancel</a>
+    </div>
+{% endblock %}

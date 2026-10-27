@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if review %}
+        Edit Review
+    {% else %}
+        Create Review
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>
+            {% if review %}
+                Edit Review
+            {% else %}
+                Create Review
+            {% endif %}
+        </h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn">Save Review</button>
+        </form>
+
+        <a href="{% url 'review-list' %}" class="btn btn-grey">Back to Reviews</a>
+    </div>
+{% endblock %}

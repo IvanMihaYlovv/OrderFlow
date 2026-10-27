@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Materials{% endblock %}
+
+{% block content %}
+    <div class="top-bar">
+        <h1>ALL MATERIALS</h1>
+        <a href="{% url 'material-create' %}" class="btn">Add material</a>
+    </div>
+
+    {% for material in materials %}
+        <article class="card">
+            <h2>
+                <a href="{% url 'material-detail' pk=material.pk %}">
+                    {{ material.name }}
+                </a>
+            </h2>
+
+            <p>{{ material.description|truncatewords:20 }}</p>
+
+            {% if material.is_available %}
+                <p class="available">Available</p>
+            {% else %}
+                <p class="unavailable">Unavailable</p>
+            {% endif %}
+        </article>
+    {% empty %}
+        <p class="empty">Still haven't added any materials</p>
+    {% endfor %}
+{% endblock %}

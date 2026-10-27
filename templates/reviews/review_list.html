@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+    <div class="top-bar">
+        <h1>Reviews</h1>
+        <a href="{% url 'review-create' %}" class="btn">Create Review</a>
+    </div>
+
+    {% for review in reviews %}
+        <div class="card">
+            <h2>{{ review.product }}</h2>
+            <p><strong>Author:</strong> {{ review.author }}</p>
+            <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+            <p>{{ review.description|truncatewords:20 }}</p>
+
+            <a href="{% url 'review-detail' review.pk %}" class="btn">Details</a>
+            <a href="{% url 'review-update' review.pk %}" class="btn btn-grey">Edit</a>
+            <a href="{% url 'review-delete' review.pk %}" class="btn btn-red">Delete</a>
+        </div>
+    {% empty %}
+        <p class="empty">No reviews available.</p>
+    {% endfor %}
+
+    {% include 'partials/pagination.html' %}
+{% endblock %}

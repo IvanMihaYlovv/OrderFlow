@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Inquiry Details{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Inquiry Details</h1>
+
+        <p><strong>ID:</strong> {{ inquiry.pk }}</p>
+        <p><strong>Customer:</strong> {{ inquiry.customer_name }}</p>
+        <p><strong>Email:</strong> {{ inquiry.customer_email }}</p>
+        <p><strong>Phone:</strong> {{ inquiry.customer_phone }}</p>
+        <p><strong>Product:</strong> {{ inquiry.product }}</p>
+        <p><strong>Description:</strong> {{ inquiry.description }}</p>
+        <p><strong>Desired quantity:</strong> {{ inquiry.desired_quantity }}</p>
+        <p><strong>Status:</strong> {{ inquiry.get_status_display }}</p>
+        <p><strong>Created at:</strong> {{ inquiry.created_at|date:"d.m.Y H:i" }}</p>
+
+        <a href="{% url 'inquiry-update' inquiry.pk %}" class="btn">Edit</a>
+        <a href="{% url 'inquiry-delete' inquiry.pk %}" class="btn btn-red">Delete</a>
+        <a href="{% url 'inquiries' %}" class="btn btn-grey">Back to Inquiries</a>
+    </div>
+{% endblock %}

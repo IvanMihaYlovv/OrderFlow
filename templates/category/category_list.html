@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+    <div class="top-bar">
+        <h1>Categories</h1>
+        <a href="{% url 'category-create' %}" class="btn">Add Category</a>
+    </div>
+
+    {% for category in categories %}
+        <div class="card">
+            <h2>
+                <a href="{% url 'category-detail' category.pk %}">
+                    {{ category.name }}
+                </a>
+            </h2>
+
+            <p>{{ category.description }}</p>
+        </div>
+    {% empty %}
+        <p class="empty">No categories have been added yet.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Review Details{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Review Details</h1>
+
+        <p><strong>ID:</strong> {{ review.pk }}</p>
+        <p><strong>Product:</strong> {{ review.product }}</p>
+        <p><strong>Author:</strong> {{ review.author }}</p>
+        <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+        <p><strong>Comment:</strong> {{ review.description }}</p>
+        <p><strong>Created at:</strong> {{ review.created_at|date:"d.m.Y H:i" }}</p>
+
+        <a href="{% url 'review-update' review.pk %}" class="btn">Edit Review</a>
+        <a href="{% url 'review-delete' review.pk %}" class="btn btn-red">Delete Review</a>
+        <a href="{% url 'review-list' %}" class="btn btn-grey">Back to Reviews</a>
+    </div>
+{% endblock %}

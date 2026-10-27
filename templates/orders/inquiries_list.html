@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Customer's Inquiries{% endblock %}
+
+{% block content %}
+    <div class="top-bar">
+        <h1>Customer's Inquiries</h1>
+        <a href="{% url 'inquiry-create' %}" class="btn">New Inquiry</a>
+    </div>
+
+    {% for inquiry in inquiries %}
+        <div class="card">
+            <h2>
+                <a href="{% url 'inquirydetails' inquiry.pk %}">{{ inquiry.customer_name }}</a>
+            </h2>
+            <p>{{ inquiry.customer_email }}</p>
+            <p>{{ inquiry.description }}</p>
+            <p><strong>Status:</strong> {{ inquiry.get_status_display }}</p>
+        </div>
+    {% empty %}
+        <p class="empty">There are no inquiries yet.</p>
+    {% endfor %}
+
+    {% include 'partials/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if material %}Редактиране{% else %}Добавяне{% endif %} на материал | OrderFlow{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>
+            {% if material %}
+                Редактиране на материал
+            {% else %}
+                Добавяне на материал
+            {% endif %}
+        </h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn">Запази</button>
+        </form>
+
+        <a href="{% url 'material-list' %}" class="btn btn-grey">Назад към материалите</a>
+    </div>
+{% endblock %}

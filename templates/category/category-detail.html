@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} Details{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>{{ category.name }}</h1>
+
+        <p>{{ category.description }}</p>
+        <p>Created at: {{ category.created_at }}</p>
+
+        <a href="{% url 'category-update' category.pk %}" class="btn">Edit Category</a>
+        <a href="{% url 'category-delete' category.pk %}" class="btn btn-red">Delete Category</a>
+        <a href="{% url 'category-list' %}" class="btn btn-grey">Back to Categories</a>
+    </div>
+{% endblock %}

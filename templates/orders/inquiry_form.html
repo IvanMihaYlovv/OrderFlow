@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Edit{% else %}Create{% endif %} Inquiry{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>
+            {% if object %}
+                Edit Inquiry
+            {% else %}
+                Create Inquiry
+            {% endif %}
+        </h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div>
+                {{ form.customer_name.label_tag }}
+                {{ form.customer_name }}
+                {{ form.customer_name.errors }}
+            </div>
+
+            <div>
+                {{ form.customer_email.label_tag }}
+                {{ form.customer_email }}
+                {{ form.customer_email.errors }}
+            </div>
+
+            <div>
+                {{ form.customer_phone.label_tag }}
+                {{ form.customer_phone }}
+                {{ form.customer_phone.errors }}
+            </div>
+
+            <div>
+                {{ form.product.label_tag }}
+                {{ form.product }}
+                {{ form.product.errors }}
+            </div>
+
+            <div>
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {{ form.description.errors }}
+            </div>
+
+            <div>
+                {{ form.desired_quantity.label_tag }}
+                {{ form.desired_quantity }}
+                {{ form.desired_quantity.errors }}
+            </div>
+
+            <button type="submit" class="btn">Save Inquiry</button>
+        </form>
+
+        <a href="{% url 'inquiries' %}" class="btn btn-grey">Back to Inquiries</a>
+    </div>
+{% endblock %}
